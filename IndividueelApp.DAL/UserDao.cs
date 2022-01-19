@@ -35,7 +35,7 @@ namespace IndividueelApp.DAL
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using SqlCommand query = new SqlCommand("INSERT INTO [dbo].[Account] ([UserName], [Password], [Name], [Email], [PlatformID], [Description]) VALUES (@UserName, @Password, @Name, @Email, @PlatformID, @Description)" + "SELECT CAST(scope_identity() AS int)", conn);
+                using SqlCommand query = new SqlCommand("INSERT INTO [dbo].[Account] ([UserName], [Password], [Name], [Email], [PlatformID], [Description]) VALUES (@UserName, @Password, @Name, @Email, @PlatformID, @Description)"/* + "SELECT CAST(scope_identity() AS int)"*/, conn);
 
 
                 conn.Open();
@@ -45,8 +45,7 @@ namespace IndividueelApp.DAL
                 query.Parameters.AddWithValue("@Email", userDto.Email);
                 query.Parameters.AddWithValue("@PlatformID", userDto.PlatformID);
                 query.Parameters.AddWithValue("@Description", userDto.Description);
-                var modified = query.ExecuteScalar();
-                userDto.Id = (int)modified;
+                query.ExecuteScalar();
             }
         }
     }

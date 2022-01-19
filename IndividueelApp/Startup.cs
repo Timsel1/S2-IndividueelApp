@@ -40,6 +40,9 @@ namespace IndividueelApp
 
             services.AddScoped<IUserDao, UserDao>();
             services.AddScoped<UserManager>();
+
+            services.AddScoped<IAppointmentDao, AppointmentDao>();
+            services.AddScoped<AppointmentManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
