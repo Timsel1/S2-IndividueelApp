@@ -18,6 +18,26 @@ namespace IndividueelApp.Controllers
             this.userManager = _userManager;
         }
 
+        public IActionResult Index()
+        {
+            List<UserViewModel> AllUsers = new List<UserViewModel>();
+            List<User> users = userManager.GetAllUsers();
+            foreach (var user in users)
+            {
+                UserViewModel viewModel = new UserViewModel()
+                {
+                    Name = user.Name,
+                    UserName = user.UserName,
+                    Password = user.Password,
+                    Description = user.Description,
+                    Email = user.Email,
+                    PlatfromID = user.PlatfromID
+                };
+                AllUsers.Add(viewModel);
+            }
+            return View(AllUsers);
+        }
+
         public IActionResult Create()
         {
             return View();

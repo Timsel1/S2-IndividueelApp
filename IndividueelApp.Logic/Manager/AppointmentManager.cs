@@ -28,19 +28,6 @@ namespace IndividueelApp.Logic.Manager
             appointmentDao.AddAppointment(appointmentDto);
         }
 
-        public Appointment GetAppointment(int id)
-        {
-            AppointmentDto appointmentDto = appointmentDao.GetAppointment(id);
-            Appointment appointment = new Appointment()
-            {
-                Note = appointmentDto.Note,
-                Type = appointmentDto.Type,
-                UserID = appointmentDto.UserID,
-                Date = appointmentDto.Date
-            };
-            return appointment;
-        }
-
         public List<Appointment> GetAllAppointments()
         {
             List<Appointment> appointments = new List<Appointment>();

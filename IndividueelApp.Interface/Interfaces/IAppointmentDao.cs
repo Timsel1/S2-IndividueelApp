@@ -9,6 +9,5 @@ namespace IndividueelApp.Interface.Interfaces
     {
         public void AddAppointment(AppointmentDto appointmentDto);
         public List<AppointmentDto> GetAllAppointments();
-        public AppointmentDto GetAppointment(int id);
     }
 }

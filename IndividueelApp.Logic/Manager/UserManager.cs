@@ -29,5 +29,25 @@ namespace IndividueelApp.Logic.Manager
             };
             userDao.AddUser(userDto);
         }
+
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            List<UserDto> userDTOs = userDao.GetAllUsers();
+            foreach (var user1 in userDTOs)
+            {
+                User user = new User()
+                {
+                    Name = user1.Name,
+                    UserName = user1.UserName,
+                    Password = user1.Password,
+                    Description = user1.Description,
+                    Email = user1.Email,
+                    PlatfromID = user1.PlatformID
+                };
+                users.Add(user);
+            }
+            return users;
+        }
     }
 }

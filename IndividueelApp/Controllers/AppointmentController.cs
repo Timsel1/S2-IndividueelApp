@@ -21,7 +21,7 @@ namespace IndividueelApp.Controllers
 
         public IActionResult Index()
         {
-            AllAppointmentsViewModel Allappointments = new AllAppointmentsViewModel();
+            List<AppointmentViewModel> Allappointments = new List<AppointmentViewModel>();
             List<Appointment> appointments = appointmentManager.GetAllAppointments();
             foreach (var appointment in appointments)
             {
@@ -32,9 +32,9 @@ namespace IndividueelApp.Controllers
                     Date = appointment.Date,
                     UserID = appointment.UserID
                 };
-                Allappointments.appointments.Add(viewModel);
+                Allappointments.Add(viewModel);
             }
-            return View(Allappointments.appointments);
+            return View(Allappointments);
         }
 
         public IActionResult Create()

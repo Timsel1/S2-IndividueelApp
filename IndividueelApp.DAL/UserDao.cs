@@ -16,15 +16,21 @@ namespace IndividueelApp.DAL
             List<UserDto> users = new List<UserDto>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using SqlCommand query = new SqlCommand("select * from User", conn);
+                using SqlCommand query = new SqlCommand("select * from [dbo].[Account]", conn);
                 conn.Open();
-
                 var reader = query.ExecuteReader();
                 while (reader.Read())
                 {
-                    UserDto user = new UserDto();
-                    user.Name = reader.GetString(0);
+                    UserDto user = new UserDto()
+                    {
+                        Name = reader["Name"].ToString(),
+                        UserName = reader["UserName"].ToString(),
+                        Password = reader["Password"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Email = reader["Email"].ToString(),
+                        PlatformID = Convert.ToInt32(reader["PlatformID"])
 
+                    };
                     users.Add(user);
                 }
             }

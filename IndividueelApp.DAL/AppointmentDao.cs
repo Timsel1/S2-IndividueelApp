@@ -25,26 +25,6 @@ namespace IndividueelApp.DAL
             query.ExecuteScalar();
         }
 
-        public AppointmentDto GetAppointment(int id)
-        {
-            AppointmentDto appointmentDto = new AppointmentDto();
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand query = new SqlCommand("SELECT * FROM [dbo].[Appointment] WHERE [ID] = @id", conn))
-            {
-                query.Parameters.AddWithValue("@id", id);
-                query.Connection.Open();
-                using SqlDataReader reader = query.ExecuteReader();
-                while (reader.Read())
-                {
-                    appointmentDto.ID = Convert.ToInt32(reader["ID"]);
-                    appointmentDto.Type = reader["Type"].ToString();
-                    appointmentDto.Note = reader["Note"].ToString();
-                    appointmentDto.Date = (DateTime)reader["Date"];
-                }
-            }
-            return appointmentDto;
-        }
-
         public List<AppointmentDto> GetAllAppointments()
         {
             List<AppointmentDto> appointments = new List<AppointmentDto>();

@@ -8,6 +8,7 @@ namespace IndividueelApp.Interface.Interfaces
     public interface IUserDao
     {
         public void AddUser(UserDto userDto);
+        public List<UserDto> GetAllUsers();
 
     }
 }
